@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from 'react-multi-carousel'
-import { Card, Button } from 'react-bootstrap'
+import { Card, Button, Alert } from 'react-bootstrap'
 
 const BusquedaForm = props => {
 
@@ -28,40 +28,42 @@ const BusquedaForm = props => {
     }
 
     return (
-        <Carousel
-            ssr
-            partialVisbile
-            itemClass="image-item"
-            keyBoardControl={true}
-            draggable={true}
-            responsive={responsive}>
-            {
-                props.albums.map(a => {
-                    return (
-                        <Card
-                            style={{ width: '18rem' }}
-                            key={a.id}>
-                            <Card.Img
-                                variant="top"
-                                src={a.image} />
+        props.error ?
+            <Alert variant="danger">{props.error}</Alert> :
+            <Carousel
+                ssr
+                partialVisbile
+                itemClass="image-item"
+                keyBoardControl={true}
+                draggable={true}
+                responsive={responsive} >
+                {
+                    props.albums.map(a => {
+                        return (
+                            <Card
+                                style={{ width: '18rem' }}
+                                key={a.id}>
+                                <Card.Img
+                                    variant="top"
+                                    src={a.image} />
 
-                            <Card.Body>
-                                <Card.Title>{a.title}</Card.Title>
-                                <Card.Text>
-                                    <h4>{a.artists}</h4>
-                                    {a.total_tracks} canciones
+                                <Card.Body>
+                                    <Card.Title>{a.title}</Card.Title>
+                                    <Card.Text>
+                                        <h4>{a.artists}</h4>
+                                        {a.total_tracks} canciones
                                 </Card.Text>
-                                <Button
-                                    variant="outline-success"
-                                    onClick={_ => playHandler(a.id)}>
-                                    Escuchar en Spotify
+                                    <Button
+                                        variant="outline-success"
+                                        onClick={_ => playHandler(a.id)}>
+                                        Escuchar en Spotify
                                     </Button>
-                            </Card.Body>
-                        </Card>
-                    )
-                })
-            }
-        </Carousel>
+                                </Card.Body>
+                            </Card>
+                        )
+                    })
+                }
+            </Carousel >
     );
 
 }

@@ -15,7 +15,7 @@ function App() {
   const searchHandler = albumName => {
     setIsLoading(true);
 
-    axios.get(`http://localhost:2000/find?q=${albumName}&limit=8`)
+    axios.get(`https://backend-spotify-dl.herokuapp.com/find?q=${albumName}&limit=10`)
       .then(res => {
         const albums = [];
 
@@ -27,7 +27,10 @@ function App() {
         setAlbumes(albums);
         setIsLoading(false);
       })
-
+      .catch(err => {
+        setIsLoading(false);
+        setError("Error al buscar los álbumes");
+      });
   }
 
   return (
@@ -42,6 +45,7 @@ function App() {
           <Loader /> :
           <BusquedaResults
             albums={albumes}
+            error={error}
           />
         }
       </div>
