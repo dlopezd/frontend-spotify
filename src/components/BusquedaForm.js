@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 
@@ -6,7 +6,8 @@ import { Navbar, Form, InputGroup, FormControl, Button } from 'react-bootstrap';
 const BusquedaForm = props => {
     const [albumName, setAlbumName] = useState('');
 
-    const searchHandler = _ => {
+    const searchHandler = event => {
+        event.preventDefault();
         props.searchHandler(albumName);
     }
 
@@ -23,7 +24,7 @@ const BusquedaForm = props => {
                         <Button
                             variant="success"
                             type="submit"
-                            disabled={albumName === '' || props.isLoading}>
+                            disabled={albumName === ''}>
                             Buscar
                         </Button>
                     </InputGroup.Append>

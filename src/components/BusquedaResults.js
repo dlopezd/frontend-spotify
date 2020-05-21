@@ -4,7 +4,15 @@ const BusquedaForm = props => {
 
     return (
         <div>
-            <p>RESULTADOS</p>
+            {props.albums.map(a => {
+                console.log(JSON.stringify(a));
+                
+                return (
+                    <div key={a.id}>
+                        <p>{a.name}</p>
+                    </div>
+                );
+            })}
         </div>
     );
 
