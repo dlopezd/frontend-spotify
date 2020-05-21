@@ -14,13 +14,13 @@ function App() {
   const searchHandler = albumName => {
     setIsLoading(true);
     console.log(`BUSCANDO: ${albumName}`);
-    
+
     axios.get(`http://localhost:2000/find?q=${albumName}&limit=8`)
       .then(res => {
         const albums = [];
 
         const length = res.data.data.length;
-        for (let i = 0; i<length; i++) {
+        for (let i = 0; i < length; i++) {
           let album = res.data.data[i];
           albums.push(album)
         }
@@ -37,15 +37,11 @@ function App() {
         searchAlbum={searchAlbum}
         searchHandler={searchHandler}
       />
-      <Container fluid>
-        <Row>
-          <Col>
-            <BusquedaResults
-              albums={albumes}
-            />
-          </Col>
-        </Row>
-      </Container>
+      <div className="content">
+        <BusquedaResults
+          albums={albumes}
+        />
+      </div>
     </>
   );
 }

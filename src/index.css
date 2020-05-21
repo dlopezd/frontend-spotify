@@ -1,6 +1,14 @@
 html {
-    background: #EEF2EF;
+    background-color: #EEF2EF;
 }
-.container-fluid {
+.container-fluid, .content, .react-multi-carousel-list {
     background: #EEF2EF;
+    background-color: #EEF2EF !important;
+}
+.content{
+    padding: 60px !important;
+}
+.listen-spotify{
+    height: 40px;
+    background-color: white !important;
 }
