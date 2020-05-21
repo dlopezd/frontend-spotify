@@ -11,6 +11,7 @@ const BusquedaForm = props => {
         props.searchHandler(albumName);
     }
 
+    const buttonDisabled = props.isLoading ? true : albumName === '' ? true : false;
     return (
         <Navbar bg="dark" expand="md">
             <Form onSubmit={searchHandler}>
@@ -24,8 +25,8 @@ const BusquedaForm = props => {
                         <Button
                             variant="success"
                             type="submit"
-                            disabled={albumName === ''}>
-                            Buscar
+                            disabled={buttonDisabled}>
+                            {props.isLoading ? 'Buscando...' : 'Buscar'}
                         </Button>
                     </InputGroup.Append>
                 </InputGroup>

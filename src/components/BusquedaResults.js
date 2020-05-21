@@ -32,6 +32,8 @@ const BusquedaForm = props => {
             ssr
             partialVisbile
             itemClass="image-item"
+            keyBoardControl={true}
+            draggable={true}
             responsive={responsive}>
             {
                 props.albums.map(a => {

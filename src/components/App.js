@@ -4,6 +4,7 @@ import BusquedaResults from './BusquedaResults';
 import axios from 'axios';
 
 import { Container, Row, Col } from 'react-bootstrap';
+import Loader from './Loader';
 
 function App() {
   const [searchAlbum, setSearchAlbum] = useState('');
@@ -13,7 +14,6 @@ function App() {
 
   const searchHandler = albumName => {
     setIsLoading(true);
-    console.log(`BUSCANDO: ${albumName}`);
 
     axios.get(`http://localhost:2000/find?q=${albumName}&limit=8`)
       .then(res => {
@@ -25,8 +25,8 @@ function App() {
           albums.push(album)
         }
         setAlbumes(albums);
+        setIsLoading(false);
       })
-    setIsLoading(false);
 
   }
 
@@ -38,9 +38,12 @@ function App() {
         searchHandler={searchHandler}
       />
       <div className="content">
-        <BusquedaResults
-          albums={albumes}
-        />
+        {isLoading ?
+          <Loader /> :
+          <BusquedaResults
+            albums={albumes}
+          />
+        }
       </div>
     </>
   );
